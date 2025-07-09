@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-dpop-header-adder",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "insomnia": {
     "name": "dpop-header-adder",
     "displayName": "DPoP Header Generator",
