@@ -36,15 +36,18 @@ module.exports.requestHooks = [
         if (context.request.hasHeader('DPoP')) {
             let dpop;
             try {
-		//console.log(context.request.getHeader('PublicKey'));
-		//console.log(atob(context.request.getHeader('PublicKey')));
-  		dpop = generateDPoPHeader(context.request.getUrl(), 'GET', context.request.getHeader('Authorization'), atob(context.request.getHeader('PublicKey')), atob(context.request.getHeader('PrivateKey')));
-		//console.log('dpop', dpop);
+                const pubKey = context.request.getHeader('PublicKey') || context.request.getEnvironmentVariable('DPoPPublicKey');
+                const privKey = context.request.getHeader('PrivateKey') || context.request.getEnvironmentVariable('DPoPPrivateKey');
+                //console.log('pubKey', pubKey);
+                //console.log(context.request.getEnvironmentVariable('DPoPPublicKey'));
+                //console.log(atob(context.request.getEnvironmentVariable('DPoPPublicKey')));
+                dpop = generateDPoPHeader(context.request.getUrl(), 'GET', context.request.getHeader('Authorization'), atob(pubKey), atob(privKey));
+                //console.log('dpop', dpop);
             } catch (e) {
                 context.app.alert("Error", "Generating DPoP Header failed.");
             }
-	    context.request.removeHeader('PublicKey');
-	    context.request.removeHeader('PrivateKey');
+            context.request.removeHeader('PublicKey');
+            context.request.removeHeader('PrivateKey');
             context.request.setHeader('DPoP', dpop);
         }
     },

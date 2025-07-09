@@ -1,10 +1,10 @@
 {
   "name": "insomnia-plugin-dpop-header-adder",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "insomnia": {
     "name": "dpop-header-adder",
     "displayName": "DPoP Header Generator",
-    "description": "This plugin automatically generates a dpop token and adds it as DPoP header if the header 'DPoP' is set to any dummy value. PrivateKey and PublicKey also have to be provided base64 encoded as header. These are not sent with the request",
+    "description": "This plugin automatically generates a dpop token and adds it as DPoP header if the header 'DPoP' is set to any dummy value. PrivateKey and PublicKey also have to be provided base64 encoded either in a environmentvariable 'DPoPPublicKey' / 'DPoPPrivateKey' as header. These are not sent with the request",
     "publisher": {
         "name": "Simon Höfle"
     }
